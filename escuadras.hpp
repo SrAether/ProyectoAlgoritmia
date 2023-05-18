@@ -31,7 +31,7 @@ namespace escuadras
  -Si el tablero es de tamaño 2x2 (caso base): Toma el tablero y llena con el número de la escuadra actual, excepto la celda que ya está ocupada. 
  -Si el tablero es más grande que 2x2, se busca la celda ocupada y se divide el tablero en cuatro cuadrantes. Se pone una escuadra en el centro de manera que ocupa una celda en cada cuadrante, excepto en el de la celda ya ocupada. Se llama a la función de manera recursiva para cada cuadrante, considerando que cada cuadrante tiene ahora una celda ocupada.
  Precondiciones | 'tam' debe ser una potencia de 2, 'tablero' debe tener la longitud de las filas y columnas igual.  
- Parametros | 'tam': tamaño del tablero, 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 'f' son las filas , int c = 0
+ Parametros | 'tam': tamaño del tablero, 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 'f': índice de la fila del tablero , 'c': índice de la columna del tablero ('f' y 'c' ayudan a rastrear la posición de inicio de cada cuadrante en la matriz).
  Valores de retorno | No retorna.
  Notas |  En esta función dividimos el caso original más grande en casos más pequeños (característica importante del algoritmo de divide y vencerás)
 ******************************************************************************/    
@@ -107,7 +107,14 @@ namespace escuadras
 
         return;
     }
-
+/******************************************************************************
+ Nombre de funcion | mostrarEscuadras()
+ Descripcion | Imprime el tablero en la consola. 
+ Precondiciones | 'tam' debe ser una potencia de 2, 'tablero' debe tener la longitud de las filas y columnas igual.  
+ Parametros | 'tam': tamaño del tablero, 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 'f': índice de la fila del tablero , 'c': índice de la columna del tablero ('f' y 'c' ayudan a rastrear la posición de inicio de cada cuadrante en la matriz).
+ Valores de retorno | No retorna.
+ Notas |  En esta función dividimos el caso original más grande en casos más pequeños (característica importante del algoritmo de divide y vencerás)
+******************************************************************************/ 
     void mostrarEscuadras(std::vector<std::vector<int>>& tablero)
     {
         int tam = tablero.size();

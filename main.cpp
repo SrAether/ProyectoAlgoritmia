@@ -254,7 +254,7 @@ void tarjetasUI()
 void crearTarjetas()
 {
     int tam{};
-    std::string ruta{"./archivo/"}, rutaArchivo{"tarjetas.txt"}, eleccion{};
+    std::string ruta{"./archivos/"}, rutaArchivo{"tarjetas.txt"}, eleccion{};
     std::cout << "\n Ruta predeterminada: " << ruta << rutaArchivo <<
                  "\n Desea usar la ruta predeterminada?\n S/n: ";
     std::getline(std::cin >> std::ws, eleccion);
