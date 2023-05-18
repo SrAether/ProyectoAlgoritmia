@@ -28,12 +28,26 @@
 
 void escuadrasUI();
 void tarjetasUI();
-void crearTarjetas();
-
+void crearTarjetasUI();
+/******************************************************************************
+ Nombre de funcion | runCMatrix
+ Descripcion | Esta funcion sirve para ejecutar cmatrix
+ Precondiciones | debe estarse ejecutando en un sistema operativo basado en UNIX
+ Parametros | NA
+ Valores de retorno | void
+ Notas | Esta funcion se activa solo con sistemas basados en UNIX
+******************************************************************************/
 void runCMatrix() {
     system("cmatrix");
 }
-// variables globales segun sistema operativo
+/******************************************************************************
+ Nombre de funcion | main
+ Descripcion | Esta es la funcion principal, dentro de esta se ejecuta la secuencia principal
+ Precondiciones | ninguna, como tal la funcion principal ya cuenta con todo lo necesario para la ejecucion del programa, en todo caso si se cuenta con un archivo de tarjetas en una ruta externa es necesario contar con la ruta exacta de dicho archivo
+ Parametros | NA
+ Valores de retorno | valores enteros, regularmente 0 en caso de un error -1
+ Notas | La funcion principal cuenta con código que se activa segun las macros del sistema operativo, esto con el afan de que se pueda ejecutar en distintas plataformas
+******************************************************************************/
 int main()
 {
     
@@ -68,7 +82,7 @@ int main()
                 tarjetasUI(); // funcion que contiene la interfaz de tarjetas
                 break;
             case '3':
-                crearTarjetas();
+                crearTarjetasUI();
                 break;
             case 'S': case 's':
                 ejecucion = false;
@@ -102,7 +116,14 @@ int main()
 }
 
 
-
+/******************************************************************************
+ Nombre de funcion | escuadrasUI
+ Descripcion | Esta funcion se encarga de la interfaz de usuario para escuadras
+ Precondiciones | debe ser llamada por la funcion principal
+ Parametros | NA
+ Valores de retorno | void
+ Notas | NA
+******************************************************************************/
 void escuadrasUI()
 {
     std::string eleccion;
@@ -204,7 +225,14 @@ void escuadrasUI()
     }
 
 }
-
+/******************************************************************************/
+/* Nombre de funcion | tarjetasUI*/
+/* Descripcion | Interfaz de usuario*/
+/* Precondiciones | Se llama cuando se captura la opcion 2 en interfaz*/
+/* Parametros | n/a     */
+/* Valores de retorno | n/a*/
+/* Notas | n/a */
+/******************************************************************************/
 void tarjetasUI()
 {
     std::string ruta{"./archivos/tarjetas.txt"}, eleccion{}, rutaGuardado{"./archivos/tarjetasResultado.txt"};
@@ -250,8 +278,15 @@ void tarjetasUI()
     Tarjetas::creacionArchivo(rutaGuardado, retorno, true);
 }
 
-
-void crearTarjetas()
+/******************************************************************************/
+/* Nombre de funcion | crearTarjetasUI                                        */
+/* Descripcion | Interfaz de usuario                                          */
+/* Precondiciones | Se llama cuando se captura la opcion 3 en interfaz        */
+/* Parametros | n/a                                                           */
+/* Valores de retorno | n/a                                                   */
+/* Notas | n/a                                                                */
+/******************************************************************************/
+void crearTarjetasUI()
 {
     int tam{};
     std::string ruta{"./archivos/"}, rutaArchivo{"tarjetas.txt"}, eleccion{};

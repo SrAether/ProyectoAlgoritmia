@@ -17,16 +17,9 @@
 
 // segun sistema operativo
 
-
-
 #ifdef _WIN32
     #include <direct.h>
 #endif
-
-
-
-
-
 
 /******************************************************************************/
 /* Nombre de funcion | prototipoDeComentado*/
@@ -83,7 +76,7 @@ std::vector<int> Tarjetas::arregloDeElementosAleatorios(int nElementos)
 /* Precondiciones | Que no exista la carpeta o el archivo*/
 /* Parametros | predeterminado = 1000 tarjetas, la ruta de la carpeta y nombre del archivo de texto*/
 /* Valores de retorno | void*/
-/* Notas | pipipi*/
+/* Notas | contiene macros*/
 /******************************************************************************/
 void Tarjetas::verificacion(const int numTar = 1000, const std::string& ruta_carpeta = "./archivos/", const std::string& nombre_archivo = "tarjetas.txt") 
 {
@@ -180,7 +173,7 @@ void Tarjetas::creacionArchivo(std::string nombre, std::vector< int> arr, bool t
 /* Precondiciones | Que no exista la carpeta o el archivo*/
 /* Parametros | la ruta de la carpeta */
 /* Valores de retorno | true, false*/
-/* Notas | */
+/* Notas | contiene macros */
 /******************************************************************************/
 bool Tarjetas::existeCarpeta(const std::string &ruta)
 {
@@ -299,19 +292,19 @@ std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
     {
         if (lis[i] > maximo)
         {
-            //
+            //actualiza el valor maximo y guarda la ubicacion de esa subsecuencia
             maximo = lis[i];
             ubi = i;
         }
     }
     std::vector<int> subsecuencia;
-    subsecuencia.push_back(lista[ubi]);
-    --maximo;
+    subsecuencia.push_back(lista[ubi]); //guardamos el ultimo valor que tuvo la subsecuencia mas larga
+    --maximo; 
     for (int j{ubi -1}; j > -1; j--)
     {
-        if (lis[j] == maximo)
+        if (lis[j] == maximo)  //buscamos la siguiente subsecuencia mas larga
         {
-            subsecuencia.push_back(lista[j]);
+            subsecuencia.push_back(lista[j]); // al encontrarla añadimos el ultimo valor a la subsecuencia
             --maximo;
         }
     }

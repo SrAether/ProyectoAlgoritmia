@@ -109,9 +109,9 @@ namespace escuadras
     }
 /******************************************************************************
  Nombre de funcion | mostrarEscuadras()
- Descripcion | Imprime el tablero en la consola. 
+ Descripcion | Imprime el tablero en la consola. Recorre cada elemento de la matriz, imprime el índice de la fila y luego cada elemento de la fila (es decir, el valor de la matriz en esa posición).
  Precondiciones | 'tam' debe ser una potencia de 2, 'tablero' debe tener la longitud de las filas y columnas igual.  
- Parametros | 'tam': tamaño del tablero, 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 'f': índice de la fila del tablero , 'c': índice de la columna del tablero ('f' y 'c' ayudan a rastrear la posición de inicio de cada cuadrante en la matriz).
+ Parametros | 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 
  Valores de retorno | No retorna.
  Notas |  En esta función dividimos el caso original más grande en casos más pequeños (característica importante del algoritmo de divide y vencerás)
 ******************************************************************************/ 
@@ -137,6 +137,14 @@ namespace escuadras
 
         return;
     }
+/******************************************************************************
+ Nombre de funcion | generarTablero()
+ Descripcion | Genera un "tablero" cuadrado del tamaño especificado, inicializa todas las celdas en cero, y luego coloca un -1 en una celda específica del tablero.
+ Precondiciones | 'tam' debe ser una potencia de 2, cordenadaX y cordenadaY: Deben ser enteros no negativos y deben ser menores que 'tam'. 
+ Parametros | tam: Este es el tamaño del tablero que se generará. cordenadaX u cordenada y: Representan la posición en el eje X y Y donde se colocará un -1 en el tablero.
+ Valores de retorno |  Matriz generada del tablero con todas las celdas llenas con ceros excepto una, que está llena con -1.
+ Notas |   
+******************************************************************************/
     std::vector<std::vector<int>> generarTablero(int tam, int cordenadaX = 0, int cordenadaY = 0)
     {
         std::cout << "\nGenerando tablero.";
@@ -153,6 +161,15 @@ namespace escuadras
         tablero[cordenadaY][cordenadaX] = -1;
         return tablero;
     }
+
+/******************************************************************************
+ Nombre de funcion | creacionArchivo
+ Descripcion | Archivo que guarda la matriz solución generada.
+ Precondiciones | Es necesario que ya este calculada la matriz con las escuadras para poder ejecutar este metodo.
+ Parametros | matriz solución, nombre de archivo.
+ Valores de retorno | n/a.
+ Notas |  Se usa ofstream para optimizar el manejo de archivos, así como un try catch.
+******************************************************************************/
 
     void creacionArchivo(std::vector<std::vector<int>> matriz, const std::string nombre = "./archivos/escuadras.txt")
     {
