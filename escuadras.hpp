@@ -12,7 +12,7 @@ namespace escuadras
  Nombre de funcion | llenar()
  Descripcion | coloca el número a la escuadra "nueva" en los valores proporcionados. 
  Precondiciones | Definición de numeroEscuadra, validez de los índices (los parámetros deben ser enteros válidos)
- Parametros | x1, y1, x2, y2, x3, y3 
+ Parametros | Las coordenadas de la ubicación en la cuálx1, y1, x2, y2, x3, y3 
  Valores de retorno | No retorna.
  Notas | Cada vez que se llama la función,aumenta el número de escuadra +1. 
 ******************************************************************************/    
@@ -29,11 +29,11 @@ namespace escuadras
  Nombre de funcion | calcularEscuadras()
  Descripcion | 
  -Si el tablero es de tamaño 2x2 (caso base): Toma el tablero y llena con el número de la escuadra actual, excepto la celda que ya está ocupada. 
- -Si el tablero es más grande que 2x2, se busca la celda ocupada y se divide el tablero en cuatro cuadrantes. Se pone una escuadra en el centro de manera que ocupa una celda en cada cuadrante, excepto en el cuadrante donde se encuentra la celda ya ocupada. Se llama a la función de manera recursiva para cada cuadrante, considerando que cada cuadrante tiene ahora una celda ocupada.
- Precondiciones | 'tam' debe ser una potencia de 2 
- Parametros | x1, y1, x2, y2, x3, y3 
+ -Si el tablero es más grande que 2x2, se busca la celda ocupada y se divide el tablero en cuatro cuadrantes. Se pone una escuadra en el centro de manera que ocupa una celda en cada cuadrante, excepto en el de la celda ya ocupada. Se llama a la función de manera recursiva para cada cuadrante, considerando que cada cuadrante tiene ahora una celda ocupada.
+ Precondiciones | 'tam' debe ser una potencia de 2, 'tablero' debe tener la longitud de las filas y columnas igual.  
+ Parametros | 'tam': tamaño del tablero, 'tablero': vector de vectores que guarda la matriz completa que representa el tablero. 'f' son las filas , int c = 0
  Valores de retorno | No retorna.
- Notas |  
+ Notas |  En esta función dividimos el caso original más grande en casos más pequeños (característica importante del algoritmo de divide y vencerás)
 ******************************************************************************/    
     void calcularEscuadras(int tam, std::vector<std::vector<int>> &tablero, int f = 0, int c = 0)
     {

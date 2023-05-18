@@ -19,7 +19,9 @@
 
 
 
-
+#ifdef _WIN32
+    #include <direct.h>
+#endif
 
 
 
@@ -184,17 +186,23 @@ bool Tarjetas::existeCarpeta(const std::string &ruta)
 {
     #ifdef _WIN32
         struct _stat info;
+        if (_stat(ruta.c_str(), &info) != 0) 
+        {
+            return false;
+        }
     #elif __linux__
         struct stat info;
+        if (stat(ruta.c_str(), &info) != 0) 
+        {
+            return false;
+        }
     #else
         struct stat info;
+        if (stat(ruta.c_str(), &info) != 0) 
+        {
+            return false;
+        }
     #endif
-    
-    
-    if (stat(ruta.c_str(), &info) != 0) 
-    {
-        return false;
-    }
     return (info.st_mode & S_IFDIR) != 0;
 }
 
@@ -260,10 +268,10 @@ std::vector<int> Tarjetas::lectura(const std::string& nombre = "./archivos/tarje
 
 /******************************************************************************/
 /* Nombre de funcion | calcularTarjetas*/
-/* Descripcion |  */
-/* Precondiciones | Que no exista el archivo*/
-/* Parametros | nombre del archivo */
-/* Valores de retorno | true, false*/
+/* Descripcion | Aqui es donde se ejecuta el algoritmo para encontrar la subsecuencia de tarjetas mas larga   */
+/* Precondiciones | Se manda a llamar una vez teniendo el arreglo de tarjetas proporcionado*/
+/* Parametros | la lista de tarjetas */
+/* Valores de retorno | subsecuencia*/
 /* Notas | */
 /******************************************************************************/
 std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
@@ -272,12 +280,14 @@ std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
     int lis[n]{1}; //Arreglo de longitudes de la subsecuencia más larga
 
     //calculamos las lis para cada sublista
+    //empezando desde un valor delante de j
     for (int i{1}; i < n; i++)
     {
         for (int j{0}; j < i; j++)
         {
             if (lista[i] > lista[j] and lis[i] < lis[j] + 1)
             {
+                //lis es el arreglo que guarda las subsecuencias encontradas hasta i  
                 lis[i] = lis[j] + 1;
             }
         }
@@ -289,6 +299,7 @@ std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
     {
         if (lis[i] > maximo)
         {
+            //
             maximo = lis[i];
             ubi = i;
         }
