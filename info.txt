@@ -1,0 +1,58 @@
+Equipos de hasta 3 personas
+- Genera archivos
+- 2 de 3 problemas
+- En cualquier lenguaje o combinacion de lenguajes
+- presentacion 29-31 de mayo
+- Entrega del proyecto <- codigo fuente + justificacion de si es optimo como algoritmo voras
+
+# Caballos 
+¿Cuantos caballos se pueden poner en un tablero de n*n sin atacarse?
+//se menciona que entre 1 y 2
+
+¿De cuantas formas?
+¿cuales son? (almenos 10 formas)
+
+# Escuadras
+tablero de 2^n * 2^n 
+1<= n <= 10
+
+#
+# # <-- Escuadras
+(x, y)
+cubrir el tablero con escuadras excepto (x, y), posicion dada, sin cortar o translapar escuadras
+entrada
+n, x, y
+
+
+
+# tarjetas
+n tarjetas 1 <= n <= 1000, cada tarjeta tiene un numero aleatorio 1 <= h <= 200,000
+hay que eliminar el menor numero de tarjetas tal que las tarjetas que queden sean el número maximo posible
+
+2 3 0 99 20 100 4 70   VECTOR ORIGEN
+2 3 99 100              VECTOR TEMPORAL
+3 99 100                VECTOR TEMPORAL
+0 99 100                VECTOR TEMPORAL
+99 100                  VECTOR TEMPORAL
+20 100                  VECTOR TEMPORAL
+100                     VECTOR TEMPORAL
+4 70                    VECTOR TEMPORAL
+70                      VECTOR TEMPORAL
+
+VECTOR DE VECTORES TEMPORALES con el que se evualará la cantidad de tarjetas
+
+70 4 100 20 99 0 3 2
+# condicion es que los numeros esten en orden ascendente y que sea el mayor numero de tarjetas posible
+4 20 99 <-seleccionada 
+70 100
+4 100
+100
+20 99
+99
+0 3
+3
+2
+
+
+// proximas mejoras
+optimizacion matriz 1000*1000 
