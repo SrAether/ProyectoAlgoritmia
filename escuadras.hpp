@@ -1,6 +1,9 @@
-#include <bits/stdc++.h>
-#include "iostream"
+#ifdef __linux__
+    #include <bits/stdc++.h>
+#endif
 
+#include <iostream>
+#include <fstream>
 namespace escuadras
 {
     int numeroEscuadra = 0;

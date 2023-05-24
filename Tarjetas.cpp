@@ -9,7 +9,7 @@
 // Manejar archivos
 #include <fstream>
 // verificacion de carpeta
-#include <sys/stat.h>
+    #include <sys/stat.h>
 // Manejo de excepcione
 
 //para tener diccionarios
@@ -19,6 +19,8 @@
 
 #ifdef _WIN32
     #include <direct.h>
+#elif __linux__
+
 #endif
 
 /******************************************************************************/
@@ -92,7 +94,7 @@ void Tarjetas::verificacion(const int numTar = 1000, const std::string& ruta_car
         std::cout << "\nNo existe la carpeta " << ruta_carpeta << ", desea crearla? \nS/n:";
         std::string eleccion;
         std::getline(std::cin >> std::ws, eleccion);
-        if ((eleccion[0] != 'S') and (eleccion[0] != 's'))
+        if ((eleccion[0] != 'S') && (eleccion[0] != 's'))
         {
             throw std::runtime_error("23");
         }
@@ -121,7 +123,7 @@ void Tarjetas::verificacion(const int numTar = 1000, const std::string& ruta_car
         std::cout << "\nNo existe el archivo " << nombre_archivo << " desea crearlos?\nS/n: ";
         std::string eleccion;
         std::getline(std::cin >> std::ws, eleccion);
-        if (eleccion[0] != 's' and eleccion[0] != 'S')
+        if ((eleccion[0] != 's') && (eleccion[0] != 'S'))
         {
             throw std::runtime_error("No se puede ejecutar el programa puesto que no existe el archivo " + nombre_archivo);
         }
@@ -269,7 +271,7 @@ std::vector<int> Tarjetas::lectura(const std::string& nombre = "./archivos/tarje
 /******************************************************************************/
 std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
 {
-    int n = lista.size(); // tamaño de la lista
+    const int n = lista.size(); // tamaño de la lista
     int lis[n]{1}; //Arreglo de longitudes de la subsecuencia más larga
 
     //calculamos las lis para cada sublista
@@ -278,7 +280,7 @@ std::vector<int> Tarjetas::calcularTarjetas(std::vector<int> lista)
     {
         for (int j{0}; j < i; j++)
         {
-            if (lista[i] > lista[j] and lis[i] < lis[j] + 1)
+            if (lista[i] > lista[j] && lis[i] < lis[j] + 1)
             {
                 //lis es el arreglo que guarda las subsecuencias encontradas hasta i  
                 lis[i] = lis[j] + 1;

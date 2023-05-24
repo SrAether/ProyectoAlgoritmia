@@ -11,12 +11,15 @@
 #include <cstdlib>
 #include <string>
 
-
 // segun sistema operativo
 
 #ifdef _WIN32
+    #include <locale>
+    #include <windows.h>
     const std::string CLEAR = "cls";
+    
 #elif __linux__
+    #include <locale.h>
     const std::string CLEAR = "clear";
 #else
     const std::string CLEAR = "clear";
@@ -53,13 +56,17 @@ int main()
     
     try // en caso de que no se cumplan los requisitos del programa lo detiene y arroja un mensaje de error
     {
+        // Configurar el idioma a español
         #ifdef __linux__
+        setlocale(LC_CTYPE, "es_MX.UTF-8");
         std::thread cmatrixThreadInicial(runCMatrix);
         std::this_thread::sleep_for(std::chrono::seconds(3));  // Detener el programa durante 1 segundo
         // Detener cmatrix
         system("pkill cmatrix");
         // Esperar a que el hilo de cmatrix termine
         cmatrixThreadInicial.join();
+        #elif _WIN32
+            SetConsoleOutputCP(CP_UTF8);
         #endif
         bool ejecucion{true};
         std::string seleccion{};
@@ -135,7 +142,7 @@ void escuadrasUI()
                      "\n2^tamaño"
                      "\nColoque el tamaño del tablero: ";
         std::getline(std::cin >> std::ws, eleccion);
-        if (eleccion[0] > 47 and eleccion[0] < 58)
+        if (eleccion[0] > 47 && eleccion[0] < 58)
         {
             tam = std::stoi(eleccion);
         }
@@ -153,10 +160,10 @@ void escuadrasUI()
                      "\n Tamaño del tablero: " << tam << " x " << tam <<
                      "\n Coloque la cordenada x del punto sin escuadra: ";
         std::getline(std::cin >> std::ws, eleccion);
-        if (eleccion[0] > 47 and eleccion[0] < 58)
+        if (eleccion[0] > 47 && eleccion[0] < 58)
         {
             cordenadaX = std::stoi(eleccion);
-            if (cordenadaX >= tam or cordenadaX < 0)
+            if (cordenadaX >= tam || cordenadaX < 0)
             {
                 std::cout << "\n 0 <= x < " << tam <<
                              "\nCordenada invalida." << std::endl;
@@ -178,10 +185,10 @@ void escuadrasUI()
                      "\n X = " << cordenadaX <<
                      "\n Coloque la cordenada Y del punto sin escuadra: ";
         std::getline(std::cin >> std::ws, eleccion);
-        if (eleccion[0] > 47 and eleccion[0] < 58)
+        if (eleccion[0] > 47 && eleccion[0] < 58)
         {
             cordenadaY = std::stoi(eleccion);
-            if (cordenadaY >= tam or cordenadaY < 0)
+            if (cordenadaY >= tam || cordenadaY < 0)
             {
                 std::cout << "\n 0 <= x < " << tam <<
                              "\nCordenada invalida. " << std::endl;
@@ -207,11 +214,11 @@ void escuadrasUI()
     getchar();
     std::cout << "\n Desea guardar la matriz de escuadras en un archivo de texto?\n S/n: ";
     std::getline(std::cin >> std::ws, eleccion);
-    if (eleccion[0] == 's' or eleccion[0] == 'S')
+    if (eleccion[0] == 's' || eleccion[0] == 'S')
     {
         std::cout << "\n Desea nombrar su archivo de texto?\n S/n: ";
         std::getline(std::cin >> std::ws, eleccion);
-        if (eleccion[0] == 's' or eleccion[0] == 'S')
+        if (eleccion[0] == 's' || eleccion[0] == 'S')
         {
             std::cout << "\n Nombrado de archivo. " <<
                          "\n No coloque la extencion del archivo (.txt)" <<
@@ -239,7 +246,7 @@ void tarjetasUI()
     std::cout << "\n Desea usar el archivo " << ruta << "? \nS/n: ";
     std::getline(std::cin >> std::ws, eleccion);
     std::vector<int> tarjetas, retorno;
-    if (eleccion[0] == 'n' or eleccion[0] == 'n')
+    if (eleccion[0] == 'n' || eleccion[0] == 'n')
     {
         std::cout << "\n Coloque la ruta del archivo: ";
         std::getline(std::cin >> std::ws, eleccion);
@@ -269,7 +276,7 @@ void tarjetasUI()
                  "\n Desea guardar en la ruta " << rutaGuardado <<
                  "\n S/n: ";
     std::getline(std::cin >> std::ws, eleccion);
-    if (eleccion[0] == 'n' or eleccion[0] == 'N')
+    if (eleccion[0] == 'n' || eleccion[0] == 'N')
     {
         std::cout << "\n Coloque la ruta: ";
         std::getline(std::cin >> std::ws, eleccion);
@@ -293,7 +300,7 @@ void crearTarjetasUI()
     std::cout << "\n Ruta predeterminada: " << ruta << rutaArchivo <<
                  "\n Desea usar la ruta predeterminada?\n S/n: ";
     std::getline(std::cin >> std::ws, eleccion);
-    if (eleccion[0] == 'n' or eleccion[0] == 'N')
+    if (eleccion[0] == 'n' || eleccion[0] == 'N')
     {
         std::cout << "\n (Debe existir)" <<
                      "\n Coloque la direccion de la carpeta en la que desea guardarlo: ";
@@ -314,7 +321,7 @@ void crearTarjetasUI()
                  "\n EL maximo numero de tarjetas es 1000" << 
                  "\n Coloque el número de tarjetas a generar: ";
     std::getline(std::cin >> std::ws, eleccion);
-    if (eleccion[0] > 47 and eleccion[0] < 58)
+    if (eleccion[0] > 47 && eleccion[0] < 58)
     {
         tam = std::stoi(eleccion);
         Tarjetas::verificacion(tam, ruta, rutaArchivo);
